@@ -9,7 +9,8 @@ const Locations = () => {
   const value = useContext(AppContext);
 
   const handleClick = (item) => {
-    navigate('/residents/' + item.id, { state: { item } });
+    navigate('/residents/' + item.id, { state: { id: item.id } });
+    console.log();
   };
 
   return (

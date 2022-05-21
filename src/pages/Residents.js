@@ -1,10 +1,33 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 
 const Residents = () => {
-  const location = useLocation();
-  const { item } = location.state;
-  console.log(item);
+  let dataArr = [];
+  const [dataResidents, setDataResidents] = useState([]);
+
+  const { id } = useParams();
+
+  const fetchResidents = async (api) => {
+    const response = await fetch(api);
+    const data = await response.json();
+    dataArr.push(data);
+    console.log(data);
+  };
+
+  const value = useContext(AppContext);
+
+  const filteredLocations = value.filter((item) => {
+    return item.id === id;
+  });
+
+  useEffect(() => {
+    filteredLocations[0]?.residents?.map((item) => {
+      return fetchResidents(item);
+    });
+    setDataResidents(dataArr);
+  }, []);
+
   return (
     <div>
       <div className="container ">
