@@ -9,47 +9,43 @@ const Residents = () => {
   const { id } = useParams();
 
   const fetchResidents = async (api) => {
-    const response = await fetch(api);
+    const response = await fetch(`${api}`);
     const data = await response.json();
-    dataArr.push(data);
-    console.log(data);
+    dataArr = [...dataArr, data];
   };
-
   const value = useContext(AppContext);
 
   const filteredLocations = value.filter((item) => {
-    return item.id === id;
+    return item.id == id;
   });
 
   useEffect(() => {
     filteredLocations[0]?.residents?.map((item) => {
       return fetchResidents(item);
     });
-    setDataResidents(dataArr);
+    console.log('renderlandı');
   }, []);
 
   return (
-    <div>
-      <div className="container ">
-        <div className="row">
-          <div className="col-12 col-md-6 col-lg-4 col-xl-3 ">
-            <div className="card">
-              <img
-                src="https://rickandmortyapi.com/api/character/avatar/166.jpeg"
-                alt="asdas"
-                className="card-img-top"
-              />
-              <div className="card-body">
-                <h5 className="card-title">test1</h5>
-                <p className="card-text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nesciunt architecto ex soluta.
-                </p>
+    <div className="container ">
+      {[1, 2].map((item) => {
+        return (
+          <div className="row" key={item?.id}>
+            <div className="col-12 col-md-6 col-lg-4 col-xl-3 ">
+              <div className="card">
+                <img src={item?.image} alt="asdas" className="card-img-top" />
+                <div className="card-body">
+                  <h5 className="card-title">test1</h5>
+                  <p className="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nesciunt architecto ex soluta.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 };
