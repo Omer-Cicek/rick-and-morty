@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
@@ -29,15 +28,6 @@ const Residents = () => {
     setDataResidents(dataArr);
   }, []);
 
-=======
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-
-const Residents = () => {
-  const location = useLocation();
-  const { item } = location.state;
-  console.log(item);
->>>>>>> d8eb43c160e398b8a4c5a27c900d64cc42309e80
   return (
     <div>
       <div className="container ">
