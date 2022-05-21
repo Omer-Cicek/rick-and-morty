@@ -24,16 +24,6 @@ const NavBar = () => {
             >
               Home
             </Link>
-<<<<<<< HEAD
-=======
-            <Link
-              to="/residents"
-              className="mx-2"
-              style={{ textDecoration: 'none', color: '#333' }}
-            >
-              Link
-            </Link>
->>>>>>> d8eb43c160e398b8a4c5a27c900d64cc42309e80
           </Nav>
         </Navbar.Collapse>
       </Container>
