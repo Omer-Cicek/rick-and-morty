@@ -6,8 +6,10 @@ import { AppContext } from '../context/AppContext';
 const Locations = () => {
   const navigate = useNavigate();
 
+  // getting data with context api
   const value = useContext(AppContext);
 
+  // navigate to residents page and sending id with router
   const handleClick = (item) => {
     navigate('/residents/' + item.id, { state: { id: item.id } });
   };
@@ -23,7 +25,13 @@ const Locations = () => {
           <th>Resident Count</th>
         </tr>
       </thead>
-      {value.isLoading && <h1>sadasdas</h1>}
+      {/* spinner while data loading */}
+      {value.isLoading && (
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      )}
+      {/* if we have data */}
       {value?.locationsData?.map((item) => {
         return (
           <tbody

@@ -5,15 +5,20 @@ import { AppContext } from '../context/AppContext';
 const Residents = () => {
   const [dataResidents, setDataResidents] = useState([]);
 
+  // getting id with router
   const { id } = useParams();
 
+  // function that gets data foreach api
   const fetchResidents = async (api) => {
     const response = await fetch(`${api}`);
     const data = await response.json();
     setDataResidents((dataResidents) => [...dataResidents, data]);
   };
+
+  // getting data from context api
   const value = useContext(AppContext);
 
+  // filtering data that matches with id that comes from router
   const filteredLocations = value.locationsData.filter((item) => {
     return item.id == id;
   });
@@ -27,6 +32,7 @@ const Residents = () => {
   return (
     <div className="container ">
       <div className="row">
+        {/* if we have data  */}
         {dataResidents?.map((item) => {
           return (
             <div className="col-12 col-md-6 col-lg-4 col-xl-3 " key={item?.id}>
@@ -73,12 +79,18 @@ const Residents = () => {
             </div>
           );
         })}
+        {/* if there is no data */}
         {dataResidents.length === 0 && (
           <h5>
-            DATA NOT FOUND <Link to="/">Click to go Back</Link>
+            DATA NOT FOUND <Link to="/rick-and-morty/">Click to go Back</Link>
           </h5>
         )}
-        {value.isLoading && <h2>sadasd</h2>}
+        {/* spinner while data loading  */}
+        {value.isLoading && (
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        )}
       </div>
     </div>
   );

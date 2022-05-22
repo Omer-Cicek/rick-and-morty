@@ -4,9 +4,11 @@ export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
   const [locationsData, setLocationsData] = useState([]);
+  //for spinner
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    // function that getting data for every page
     const fetchData = async () => {
       let dataArr = [];
       try {
@@ -19,6 +21,7 @@ const AppContextProvider = (props) => {
           dataArr.push(data.results);
         }
         setLocationsData(dataArr.flat());
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
         setIsLoading(false);

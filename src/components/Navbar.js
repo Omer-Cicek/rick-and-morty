@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Link to="/rick-and-morty">
+        <Link to="/rick-and-morty/">
           <img
             src={RickAndMorty}
             alt="Rick and morty Logo"
