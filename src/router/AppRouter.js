@@ -10,7 +10,7 @@ const AppRouter = () => {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/rick-and-morty" element={<Main />} />
         <Route path="/locations" element={<Locations />} />
         <Route path="/residents/:id" element={<Residents />} />
       </Routes>

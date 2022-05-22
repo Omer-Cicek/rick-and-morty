@@ -23,7 +23,8 @@ const Locations = () => {
           <th>Resident Count</th>
         </tr>
       </thead>
-      {value.map((item) => {
+      {value.isLoading && <h1>sadasdas</h1>}
+      {value?.locationsData?.map((item) => {
         return (
           <tbody
             key={item.id}

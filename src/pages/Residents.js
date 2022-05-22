@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 
 const Residents = () => {
@@ -14,7 +14,7 @@ const Residents = () => {
   };
   const value = useContext(AppContext);
 
-  const filteredLocations = value.filter((item) => {
+  const filteredLocations = value.locationsData.filter((item) => {
     return item.id == id;
   });
 
@@ -22,7 +22,6 @@ const Residents = () => {
     filteredLocations[0]?.residents?.map((item) => {
       return fetchResidents(item);
     });
-    console.log('renderlandı');
   }, []);
 
   return (
@@ -45,21 +44,27 @@ const Residents = () => {
                   <li className="list-group-item">
                     Origin: {item?.origin?.name}
                   </li>
+                  {/* status indicator */}
                   <li className="list-group-item">
-                    {/* Origin:{' '}
-                    {item?.status == 'Dead' ? (
-                      <status-indicator intermediary> </status-indicator>
+                    Status: &nbsp;
+                    {item?.status === 'Dead' ? (
+                      <status-indicator
+                        active
+                        negative
+                        pulse
+                      ></status-indicator>
+                    ) : item?.status === 'Alive' ? (
+                      <status-indicator
+                        active
+                        positive
+                        pulse
+                      ></status-indicator>
                     ) : (
-                      <status-indicator active> </status-indicator>
-                    )}
-                    {item?.status} */}
-                    Origin:
-                    {item?.status == 'Dead' ? (
-                      <status-indicator active negative></status-indicator>
-                    ) : item?.status == 'Alive' ? (
-                      <status-indicator active intermediary></status-indicator>
-                    ) : (
-                      <status-indicator active pulse></status-indicator>
+                      <status-indicator
+                        active
+                        intermediary
+                        pulse
+                      ></status-indicator>
                     )}
                     {item?.status}
                   </li>
@@ -68,8 +73,12 @@ const Residents = () => {
             </div>
           );
         })}
-        {dataResidents.length === 0 && <h5>DATA NOT FOUND</h5>}
-        {console.log(dataResidents)}
+        {dataResidents.length === 0 && (
+          <h5>
+            DATA NOT FOUND <Link to="/">Click to go Back</Link>
+          </h5>
+        )}
+        {value.isLoading && <h2>sadasd</h2>}
       </div>
     </div>
   );

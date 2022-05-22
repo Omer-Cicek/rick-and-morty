@@ -6,7 +6,7 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Link to="/">
+        <Link to="/rick-and-morty">
           <img
             src={RickAndMorty}
             alt="Rick and morty Logo"
@@ -22,7 +22,7 @@ const NavBar = () => {
               to="/locations"
               style={{ textDecoration: 'none', color: '#333' }}
             >
-              Home
+              Locations
             </Link>
           </Nav>
         </Navbar.Collapse>
